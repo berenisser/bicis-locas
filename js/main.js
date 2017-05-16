@@ -2,7 +2,8 @@ function validateForm(){
 	nombre();
 	apellido();
 	correo();
-	contrasena()
+	contrasena();
+	seleccion();
 }
 
 
@@ -46,11 +47,24 @@ function correo(){
 function contrasena(){
 		var passValue = document.getElementById("input-password").value;
 		if (passValue=="123456" || passValue=="098765" || passValue=="password" || !(/^(?=.*\d).{6,}$/).test(passValue)){
-		var spancito = document.createElement("span");
-		var texto = document.createTextNode("Contraseña inválida. Debe tener un mínimo de 6 caracteres.");
-		var clasePadre = document.getElementsByClassName("form-group input-box")[0];
-		spancito.appendChild(texto);
-		clasePadre.appendChild(spancito);
+			var spancito = document.createElement("span");
+			var texto = document.createTextNode("Contraseña inválida. Debe tener un mínimo de 6 caracteres.");
+			var clasePadre = document.getElementsByClassName("form-group input-box")[0];
+			spancito.appendChild(texto);
+			clasePadre.appendChild(spancito);
 		}
 }
 
+//validacion seleccion, debe escoger una opción, tagName me da un arreglo el cual deboo recorrer
+function seleccion(){
+		var selectValue = document.getElementsByTagName("select");
+		for (var i=0 ; i<selectValue.length ; i++){
+			if (selectValue[0].value == 0){
+				var spancito = document.createElement("span");
+				var texto = document.createTextNode("Debe seleccionar una opción.");
+				var clasePadre = document.getElementsByClassName("form-group input-box")[1];
+				spancito.appendChild(texto);
+				clasePadre.appendChild(spancito);
+			}
+		}	
+}
